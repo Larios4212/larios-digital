@@ -26,31 +26,33 @@ export function Navbar() {
       <motion.nav
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.5 }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ${
           scrolled
-            ? 'bg-[#06080f]/80 backdrop-blur-2xl border-b border-white/[0.06] shadow-xl shadow-black/20'
+            ? 'bg-[#06080f]/70 backdrop-blur-2xl border-b border-white/[0.06] shadow-2xl shadow-black/30'
             : 'bg-transparent'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-6 h-[72px] flex items-center justify-between">
           <Logo />
 
           {/* Desktop nav */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden md:flex items-center gap-1">
             {navLinks.map(l => (
               <a
                 key={l.href}
                 href={l.href}
-                className="text-sm text-slate-400 hover:text-white transition-colors duration-200 font-medium"
+                className="px-4 py-2 text-sm text-slate-400 hover:text-white transition-colors duration-300 font-medium rounded-lg hover:bg-white/[0.04]"
               >
                 {l.label}
               </a>
             ))}
-            <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer"
-              className="btn-primary text-sm py-2.5 px-5">
-              Cotizar <ArrowRight className="w-4 h-4" />
-            </a>
+            <div className="ml-4">
+              <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer"
+                className="btn-primary text-sm py-2.5 px-6">
+                Cotizar <ArrowRight className="w-3.5 h-3.5" />
+              </a>
+            </div>
           </div>
 
           {/* Mobile hamburger */}

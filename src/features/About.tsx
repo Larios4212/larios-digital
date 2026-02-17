@@ -1,46 +1,99 @@
 import { motion } from 'framer-motion';
-import { Code2, Cpu, LayoutDashboard, Rocket, Users, Award } from 'lucide-react';
-import { useInView } from '@/hooks';
+import { Code2, Cpu, LayoutDashboard, Rocket, Users, Award, Terminal, GitBranch } from 'lucide-react';
+import { useInView, useAnimatedCounter } from '@/hooks';
 
 const HIGHLIGHTS = [
   { icon: Code2, label: 'React + TypeScript', detail: 'Stack principal' },
   { icon: LayoutDashboard, label: 'Dashboards', detail: 'Analytics en tiempo real' },
-  { icon: Cpu, label: 'Automatizaci√≥n', detail: 'Procesos inteligentes' },
+  { icon: Cpu, label: 'AutomatizaciÛn', detail: 'Procesos inteligentes' },
   { icon: Rocket, label: 'Deploy Continuo', detail: 'CI/CD automatizado' },
   { icon: Users, label: 'Multi-usuario', detail: 'Roles y permisos' },
-  { icon: Award, label: 'Dise√±o Premium', detail: 'UI/UX profesional' },
+  { icon: Award, label: 'DiseÒo Premium', detail: 'UI/UX profesional' },
 ];
+
+/* Animated stat counter */
+function StatCounter({ value, label, inView }: { value: number; label: string; inView: boolean }) {
+  const count = useAnimatedCounter(inView ? value : 0, 1800);
+  return (
+    <div className="text-center">
+      <p className="text-3xl font-bold gradient-text tabular-nums">{count}{value === 100 ? '%' : '+'}</p>
+      <p className="text-[11px] text-slate-500 mt-1 font-medium">{label}</p>
+    </div>
+  );
+}
+
+/* Decorative code snippet */
+function CodeDecoration() {
+  return (
+    <motion.div
+      initial={{ opacity: 0, x: 30 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ delay: 1, duration: 0.6 }}
+      className="absolute -right-4 top-8 hidden xl:block"
+    >
+      <div className="glass rounded-xl p-4 text-[10px] font-mono text-slate-500 leading-relaxed">
+        <div className="flex items-center gap-1.5 mb-2">
+          <Terminal className="w-3 h-3 text-blue-400" />
+          <span className="text-blue-400 text-[9px]">larios-digital</span>
+        </div>
+        <div><span className="text-violet-400">const</span> <span className="text-blue-300">config</span> = {'{'}</div>
+        <div className="pl-4"><span className="text-emerald-400">stack</span>: <span className="text-amber-300">&apos;React + TS&apos;</span>,</div>
+        <div className="pl-4"><span className="text-emerald-400">quality</span>: <span className="text-amber-300">&apos;premium&apos;</span>,</div>
+        <div className="pl-4"><span className="text-emerald-400">deploy</span>: <span className="text-amber-300">&apos;automatic&apos;</span>,</div>
+        <div>{'}'}</div>
+      </div>
+    </motion.div>
+  );
+}
 
 export function About() {
   const { ref, inView } = useInView();
 
   return (
-    <section id="about" className="relative py-28 overflow-hidden">
+    <section id="about" className="relative py-32 overflow-hidden">
+      {/* Section divider */}
+      <div className="absolute top-0 inset-x-0 section-divider" />
+
       {/* Bg effects */}
-      <div className="absolute top-1/3 left-0 w-[600px] h-[600px] bg-blue-600/5 rounded-full blur-[180px] pointer-events-none" />
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-1/3 left-0 w-[700px] h-[700px] bg-blue-600/4 rounded-full blur-[200px]" />
+        <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-violet-600/3 rounded-full blur-[160px]" />
+      </div>
 
       <div ref={ref} className="relative max-w-7xl mx-auto px-6">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Left ‚Äî Visual card */}
+        <div className="grid lg:grid-cols-2 gap-16 xl:gap-20 items-center">
+          {/* Left visual card */}
           <motion.div
-            initial={{ opacity: 0, x: -40 }}
+            initial={{ opacity: 0, x: -50 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.7 }}
+            transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
             className="relative"
           >
-            <div className="glass rounded-3xl p-8 relative overflow-hidden">
-              {/* Decorative gradient border */}
-              <div className="absolute -top-px -left-px -right-px h-px bg-gradient-to-r from-transparent via-blue-500/40 to-transparent" />
+            <div className="card-premium p-8 relative">
+              {/* Top gradient accent */}
+              <div className="absolute -top-px inset-x-0 h-px bg-gradient-to-r from-transparent via-blue-500/40 to-transparent" />
 
               {/* Avatar area */}
-              <div className="flex items-center gap-5 mb-8">
-                <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-blue-600 to-violet-600 flex items-center justify-center text-white text-2xl font-bold shadow-lg shadow-blue-600/20">
-                  AL
-                </div>
+              <div className="flex items-center gap-5 mb-9">
+                <motion.div
+                  whileHover={{ scale: 1.05, rotate: 2 }}
+                  className="relative"
+                >
+                  <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-blue-600 to-violet-600 flex items-center justify-center text-white text-2xl font-bold shadow-xl shadow-blue-600/25">
+                    AL
+                  </div>
+                  {/* Status dot */}
+                  <div className="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-[#06080f] flex items-center justify-center">
+                    <div className="w-3 h-3 rounded-full bg-emerald-400 animate-pulse" />
+                  </div>
+                </motion.div>
                 <div>
                   <h3 className="text-xl font-bold text-white">Armando Larios</h3>
-                  <p className="text-sm text-blue-400 font-medium">Ingeniero en Computaci√≥n</p>
-                  <p className="text-xs text-slate-500 mt-0.5">Desarrollador de Software</p>
+                  <p className="text-sm text-blue-400 font-medium">Ingeniero en ComputaciÛn</p>
+                  <div className="flex items-center gap-1.5 mt-1">
+                    <GitBranch className="w-3 h-3 text-slate-600" />
+                    <p className="text-[11px] text-slate-500">Full Stack Developer</p>
+                  </div>
                 </div>
               </div>
 
@@ -49,92 +102,94 @@ export function About() {
                 {HIGHLIGHTS.map((h, i) => (
                   <motion.div
                     key={h.label}
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={inView ? { opacity: 1, scale: 1 } : {}}
-                    transition={{ delay: 0.3 + i * 0.08, duration: 0.4 }}
-                    className="flex items-center gap-3 p-3 rounded-xl bg-white/[0.03] border border-white/[0.05] hover:bg-white/[0.06] hover:border-white/[0.1] transition-all duration-300"
+                    initial={{ opacity: 0, y: 20, scale: 0.9 }}
+                    animate={inView ? { opacity: 1, y: 0, scale: 1 } : {}}
+                    transition={{ delay: 0.3 + i * 0.08, duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
+                    className="flex items-center gap-3 p-3 rounded-xl bg-white/[0.02] border border-white/[0.04] hover:bg-white/[0.06] hover:border-white/[0.1] group/skill transition-all duration-300 cursor-default"
                   >
-                    <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-blue-600/20 to-violet-600/20 flex items-center justify-center flex-shrink-0">
-                      <h.icon className="w-4 h-4 text-blue-400" />
+                    <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-600/15 to-violet-600/15 flex items-center justify-center flex-shrink-0 group-hover/skill:from-blue-600/25 group-hover/skill:to-violet-600/25 transition-all duration-300">
+                      <h.icon className="w-4.5 h-4.5 text-blue-400 group-hover/skill:text-blue-300 transition-colors" />
                     </div>
                     <div>
                       <p className="text-xs font-semibold text-white leading-tight">{h.label}</p>
-                      <p className="text-[10px] text-slate-500">{h.detail}</p>
+                      <p className="text-[10px] text-slate-500 mt-0.5">{h.detail}</p>
                     </div>
                   </motion.div>
                 ))}
               </div>
 
-              {/* Bottom stats */}
-              <div className="mt-8 pt-6 border-t border-white/[0.06] grid grid-cols-3 gap-4 text-center">
-                {[
-                  { v: '5+', l: 'Sistemas' },
-                  { v: '30+', l: 'M√≥dulos' },
-                  { v: '100%', l: 'Entregados' },
-                ].map(s => (
-                  <div key={s.l}>
-                    <p className="text-2xl font-bold gradient-text">{s.v}</p>
-                    <p className="text-[11px] text-slate-500 mt-0.5">{s.l}</p>
-                  </div>
-                ))}
+              {/* Bottom stats with animated counters */}
+              <div className="mt-8 pt-7 border-t border-white/[0.06] grid grid-cols-3 gap-6">
+                <StatCounter value={5} label="Sistemas" inView={inView} />
+                <StatCounter value={30} label="MÛdulos" inView={inView} />
+                <StatCounter value={100} label="Entregados" inView={inView} />
               </div>
             </div>
+
+            {/* Code decoration */}
+            <CodeDecoration />
           </motion.div>
 
-          {/* Right ‚Äî Text content */}
+          {/* Right text content */}
           <motion.div
-            initial={{ opacity: 0, x: 40 }}
+            initial={{ opacity: 0, x: 50 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.7, delay: 0.15 }}
+            transition={{ duration: 0.8, delay: 0.15, ease: [0.25, 0.46, 0.45, 0.94] }}
           >
-            <span className="text-xs font-semibold text-blue-400 tracking-[0.2em] uppercase mb-3 block">
-              Sobre m√≠
-            </span>
-            <h2 className="section-title text-white mb-6">
-              Ingenier√≠a de software{' '}
+            <motion.span
+              initial={{ opacity: 0, y: 20 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5 }}
+              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/[0.04] border border-white/[0.06] text-xs font-semibold text-blue-400 tracking-[0.15em] uppercase mb-6"
+            >
+              <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse-soft" />
+              Sobre mÌ
+            </motion.span>
+            <h2 className="section-title text-white mb-7">
+              IngenierÌa de software{' '}
               <span className="gradient-text">aplicada a negocios</span>
             </h2>
 
-            <div className="space-y-4 text-sm text-slate-400 leading-relaxed">
+            <div className="space-y-5 text-[15px] text-slate-400 leading-[1.8]">
               <p>
-                Soy Ingeniero en Computaci√≥n especializado en el desarrollo de{' '}
+                Soy Ingeniero en ComputaciÛn especializado en el desarrollo de{' '}
                 <span className="text-white font-medium">sistemas administrativos inteligentes</span>{' '}
-                para negocios. Mi enfoque combina arquitectura de software s√≥lida con
+                para negocios. Mi enfoque combina arquitectura de software sÛlida con
                 interfaces modernas que realmente resuelven problemas operativos.
               </p>
               <p>
-                Cada sistema que construyo est√° dise√±ado para ser{' '}
+                Cada sistema que construyo est· diseÒado para ser{' '}
                 <span className="text-white font-medium">escalable, intuitivo y profesional</span>.
-                Desde dashboards financieros hasta sistemas de gesti√≥n completos,
-                trabajo con las tecnolog√≠as m√°s actuales para entregar soluciones
+                Desde dashboards financieros hasta sistemas de gestiÛn completos,
+                trabajo con las tecnologÌas m·s actuales para entregar soluciones
                 de alto nivel.
               </p>
               <p>
                 Mi stack principal incluye{' '}
                 <span className="text-blue-400 font-medium">React, TypeScript, TailwindCSS</span>{' '}
                 y herramientas modernas de desarrollo. Cada proyecto incluye deploy
-                autom√°tico, dise√±o responsivo y arquitectura modular lista para crecer.
+                autom·tico, diseÒo responsivo y arquitectura modular lista para crecer.
               </p>
             </div>
 
-            {/* Philosophy cards */}
-            <div className="mt-8 space-y-3">
+            {/* Philosophy cards with premium styling */}
+            <div className="mt-10 space-y-3">
               {[
-                { title: 'C√≥digo limpio', desc: 'TypeScript estricto, componentes modulares, zero warnings.' },
-                { title: 'Dise√±o funcional', desc: 'Interfaces que combinan est√©tica y usabilidad real.' },
-                { title: 'Entrega profesional', desc: 'Deploy automatizado, documentaci√≥n y soporte incluido.' },
+                { title: 'CÛdigo limpio', desc: 'TypeScript estricto, componentes modulares, zero warnings.', accent: 'from-blue-500' },
+                { title: 'DiseÒo funcional', desc: 'Interfaces que combinan estÈtica y usabilidad real.', accent: 'from-violet-500' },
+                { title: 'Entrega profesional', desc: 'Deploy automatizado, documentaciÛn y soporte incluido.', accent: 'from-emerald-500' },
               ].map((item, i) => (
                 <motion.div
                   key={item.title}
-                  initial={{ opacity: 0, y: 15 }}
-                  animate={inView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ delay: 0.5 + i * 0.1, duration: 0.4 }}
-                  className="flex items-start gap-3 p-3 rounded-xl bg-white/[0.02] border border-white/[0.04]"
+                  initial={{ opacity: 0, x: 30 }}
+                  animate={inView ? { opacity: 1, x: 0 } : {}}
+                  transition={{ delay: 0.6 + i * 0.12, duration: 0.5 }}
+                  className="flex items-start gap-4 p-4 rounded-xl bg-white/[0.02] border border-white/[0.04] hover:bg-white/[0.04] hover:border-white/[0.08] transition-all duration-300 group/philo"
                 >
-                  <div className="w-1.5 h-1.5 rounded-full bg-blue-500 mt-1.5 flex-shrink-0" />
+                  <div className={`w-1 h-8 rounded-full bg-gradient-to-b ${item.accent} to-transparent flex-shrink-0 mt-0.5 group-hover/philo:h-10 transition-all duration-300`} />
                   <div>
-                    <p className="text-sm font-semibold text-white">{item.title}</p>
-                    <p className="text-xs text-slate-500">{item.desc}</p>
+                    <p className="text-sm font-bold text-white mb-0.5">{item.title}</p>
+                    <p className="text-xs text-slate-500 leading-relaxed">{item.desc}</p>
                   </div>
                 </motion.div>
               ))}

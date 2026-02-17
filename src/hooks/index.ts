@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useCallback } from 'react';
 
 export function useInView(threshold = 0.15) {
   const ref = useRef<HTMLDivElement>(null);
@@ -37,4 +37,29 @@ export function useAnimatedCounter(target: number, duration = 1400): number {
   }, [target, duration]);
 
   return current;
+}
+
+/** Returns normalized mouse position -1..1 from center of viewport, throttled by rAF */
+export function useMouseParallax(intensity = 1) {
+  const [pos, setPos] = useState({ x: 0, y: 0 });
+  const raf = useRef(0);
+
+  const handler = useCallback((e: MouseEvent) => {
+    cancelAnimationFrame(raf.current);
+    raf.current = requestAnimationFrame(() => {
+      const x = ((e.clientX / window.innerWidth) - 0.5) * 2 * intensity;
+      const y = ((e.clientY / window.innerHeight) - 0.5) * 2 * intensity;
+      setPos({ x, y });
+    });
+  }, [intensity]);
+
+  useEffect(() => {
+    window.addEventListener('mousemove', handler, { passive: true });
+    return () => {
+      window.removeEventListener('mousemove', handler);
+      cancelAnimationFrame(raf.current);
+    };
+  }, [handler]);
+
+  return pos;
 }
