@@ -5,10 +5,10 @@ import { useInView, useAnimatedCounter } from '@/hooks';
 const HIGHLIGHTS = [
   { icon: Code2, label: 'React + TypeScript', detail: 'Stack principal' },
   { icon: LayoutDashboard, label: 'Dashboards', detail: 'Analytics en tiempo real' },
-  { icon: Cpu, label: 'AutomatizaciÛn', detail: 'Procesos inteligentes' },
+  { icon: Cpu, label: 'Automatizaci√≥n', detail: 'Procesos inteligentes' },
   { icon: Rocket, label: 'Deploy Continuo', detail: 'CI/CD automatizado' },
   { icon: Users, label: 'Multi-usuario', detail: 'Roles y permisos' },
-  { icon: Award, label: 'DiseÒo Premium', detail: 'UI/UX profesional' },
+  { icon: Award, label: 'Dise√±o Premium', detail: 'UI/UX profesional' },
 ];
 
 /* Animated stat counter */
@@ -16,8 +16,8 @@ function StatCounter({ value, label, inView }: { value: number; label: string; i
   const count = useAnimatedCounter(inView ? value : 0, 1800);
   return (
     <div className="text-center">
-      <p className="text-3xl font-bold gradient-text tabular-nums">{count}{value === 100 ? '%' : '+'}</p>
-      <p className="text-[11px] text-slate-500 mt-1 font-medium">{label}</p>
+      <p className="text-2xl sm:text-3xl font-bold gradient-text tabular-nums">{count}{value === 100 ? '%' : '+'}</p>
+      <p className="text-[10px] sm:text-[11px] text-slate-500 mt-1 font-medium">{label}</p>
     </div>
   );
 }
@@ -50,18 +50,18 @@ export function About() {
   const { ref, inView } = useInView();
 
   return (
-    <section id="about" className="relative py-32 overflow-hidden">
+    <section id="about" className="relative py-20 sm:py-32 overflow-hidden">
       {/* Section divider */}
       <div className="absolute top-0 inset-x-0 section-divider" />
 
       {/* Bg effects */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/3 left-0 w-[700px] h-[700px] bg-blue-600/4 rounded-full blur-[200px]" />
-        <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-violet-600/3 rounded-full blur-[160px]" />
+        <div className="absolute top-1/3 left-0 w-[400px] md:w-[700px] h-[400px] md:h-[700px] bg-blue-600/4 rounded-full blur-[200px]" />
+        <div className="absolute bottom-0 right-0 w-[300px] md:w-[500px] h-[300px] md:h-[500px] bg-violet-600/3 rounded-full blur-[160px]" />
       </div>
 
-      <div ref={ref} className="relative max-w-7xl mx-auto px-6">
-        <div className="grid lg:grid-cols-2 gap-16 xl:gap-20 items-center">
+      <div ref={ref} className="relative max-w-7xl mx-auto px-4 sm:px-6">
+        <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 xl:gap-20 items-center">
           {/* Left visual card */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -69,59 +69,59 @@ export function About() {
             transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
             className="relative"
           >
-            <div className="card-premium p-8 relative">
+            <div className="card-premium p-5 sm:p-8 relative">
               {/* Top gradient accent */}
               <div className="absolute -top-px inset-x-0 h-px bg-gradient-to-r from-transparent via-blue-500/40 to-transparent" />
 
               {/* Avatar area */}
-              <div className="flex items-center gap-5 mb-9">
+              <div className="flex items-center gap-4 sm:gap-5 mb-7 sm:mb-9">
                 <motion.div
                   whileHover={{ scale: 1.05, rotate: 2 }}
                   className="relative"
                 >
-                  <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-blue-600 to-violet-600 flex items-center justify-center text-white text-2xl font-bold shadow-xl shadow-blue-600/25">
+                  <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-gradient-to-br from-blue-600 to-violet-600 flex items-center justify-center text-white text-xl sm:text-2xl font-bold shadow-xl shadow-blue-600/25">
                     AL
                   </div>
                   {/* Status dot */}
-                  <div className="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-[#06080f] flex items-center justify-center">
-                    <div className="w-3 h-3 rounded-full bg-emerald-400 animate-pulse" />
+                  <div className="absolute -bottom-1 -right-1 w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-[#06080f] flex items-center justify-center">
+                    <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-emerald-400 animate-pulse" />
                   </div>
                 </motion.div>
                 <div>
-                  <h3 className="text-xl font-bold text-white">Armando Larios</h3>
-                  <p className="text-sm text-blue-400 font-medium">Ingeniero en ComputaciÛn</p>
+                  <h3 className="text-lg sm:text-xl font-bold text-white">Armando Larios</h3>
+                  <p className="text-xs sm:text-sm text-blue-400 font-medium">Ingeniero en Computaci√≥n</p>
                   <div className="flex items-center gap-1.5 mt-1">
                     <GitBranch className="w-3 h-3 text-slate-600" />
-                    <p className="text-[11px] text-slate-500">Full Stack Developer</p>
+                    <p className="text-[10px] sm:text-[11px] text-slate-500">Full Stack Developer</p>
                   </div>
                 </div>
               </div>
 
               {/* Skill grid */}
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-2 gap-2 sm:gap-3">
                 {HIGHLIGHTS.map((h, i) => (
                   <motion.div
                     key={h.label}
                     initial={{ opacity: 0, y: 20, scale: 0.9 }}
                     animate={inView ? { opacity: 1, y: 0, scale: 1 } : {}}
                     transition={{ delay: 0.3 + i * 0.08, duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
-                    className="flex items-center gap-3 p-3 rounded-xl bg-white/[0.02] border border-white/[0.04] hover:bg-white/[0.06] hover:border-white/[0.1] group/skill transition-all duration-300 cursor-default"
+                    className="flex items-center gap-2 sm:gap-3 p-2.5 sm:p-3 rounded-xl bg-white/[0.02] border border-white/[0.04] hover:bg-white/[0.06] hover:border-white/[0.1] group/skill transition-all duration-300 cursor-default"
                   >
-                    <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-600/15 to-violet-600/15 flex items-center justify-center flex-shrink-0 group-hover/skill:from-blue-600/25 group-hover/skill:to-violet-600/25 transition-all duration-300">
-                      <h.icon className="w-4.5 h-4.5 text-blue-400 group-hover/skill:text-blue-300 transition-colors" />
+                    <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-gradient-to-br from-blue-600/15 to-violet-600/15 flex items-center justify-center flex-shrink-0 group-hover/skill:from-blue-600/25 group-hover/skill:to-violet-600/25 transition-all duration-300">
+                      <h.icon className="w-3.5 h-3.5 sm:w-4.5 sm:h-4.5 text-blue-400 group-hover/skill:text-blue-300 transition-colors" />
                     </div>
-                    <div>
-                      <p className="text-xs font-semibold text-white leading-tight">{h.label}</p>
-                      <p className="text-[10px] text-slate-500 mt-0.5">{h.detail}</p>
+                    <div className="min-w-0">
+                      <p className="text-[11px] sm:text-xs font-semibold text-white leading-tight truncate">{h.label}</p>
+                      <p className="text-[9px] sm:text-[10px] text-slate-500 mt-0.5 truncate">{h.detail}</p>
                     </div>
                   </motion.div>
                 ))}
               </div>
 
               {/* Bottom stats with animated counters */}
-              <div className="mt-8 pt-7 border-t border-white/[0.06] grid grid-cols-3 gap-6">
-                <StatCounter value={5} label="Sistemas" inView={inView} />
-                <StatCounter value={30} label="MÛdulos" inView={inView} />
+              <div className="mt-6 sm:mt-8 pt-5 sm:pt-7 border-t border-white/[0.06] grid grid-cols-3 gap-4 sm:gap-6">
+                <StatCounter value={6} label="Sistemas" inView={inView} />
+                <StatCounter value={30} label="M√≥dulos" inView={inView} />
                 <StatCounter value={100} label="Entregados" inView={inView} />
               </div>
             </div>
@@ -140,56 +140,56 @@ export function About() {
               initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5 }}
-              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/[0.04] border border-white/[0.06] text-xs font-semibold text-blue-400 tracking-[0.15em] uppercase mb-6"
+              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/[0.04] border border-white/[0.06] text-xs font-semibold text-blue-400 tracking-[0.15em] uppercase mb-4 sm:mb-6"
             >
               <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse-soft" />
-              Sobre mÌ
+              Sobre m√≠
             </motion.span>
-            <h2 className="section-title text-white mb-7">
-              IngenierÌa de software{' '}
+            <h2 className="section-title text-white mb-5 sm:mb-7">
+              Ingenier√≠a de software{' '}
               <span className="gradient-text">aplicada a negocios</span>
             </h2>
 
-            <div className="space-y-5 text-[15px] text-slate-400 leading-[1.8]">
+            <div className="space-y-4 sm:space-y-5 text-sm sm:text-[15px] text-slate-400 leading-[1.7] sm:leading-[1.8]">
               <p>
-                Soy Ingeniero en ComputaciÛn especializado en el desarrollo de{' '}
+                Soy Ingeniero en Computaci√≥n especializado en el desarrollo de{' '}
                 <span className="text-white font-medium">sistemas administrativos inteligentes</span>{' '}
-                para negocios. Mi enfoque combina arquitectura de software sÛlida con
+                para negocios. Mi enfoque combina arquitectura de software s√≥lida con
                 interfaces modernas que realmente resuelven problemas operativos.
               </p>
               <p>
-                Cada sistema que construyo est· diseÒado para ser{' '}
+                Cada sistema que construyo est√° dise√±ado para ser{' '}
                 <span className="text-white font-medium">escalable, intuitivo y profesional</span>.
-                Desde dashboards financieros hasta sistemas de gestiÛn completos,
-                trabajo con las tecnologÌas m·s actuales para entregar soluciones
+                Desde dashboards financieros hasta sistemas de gesti√≥n completos,
+                trabajo con las tecnolog√≠as m√°s actuales para entregar soluciones
                 de alto nivel.
               </p>
               <p>
                 Mi stack principal incluye{' '}
                 <span className="text-blue-400 font-medium">React, TypeScript, TailwindCSS</span>{' '}
                 y herramientas modernas de desarrollo. Cada proyecto incluye deploy
-                autom·tico, diseÒo responsivo y arquitectura modular lista para crecer.
+                autom√°tico, dise√±o responsivo y arquitectura modular lista para crecer.
               </p>
             </div>
 
             {/* Philosophy cards with premium styling */}
-            <div className="mt-10 space-y-3">
+            <div className="mt-8 sm:mt-10 space-y-2.5 sm:space-y-3">
               {[
-                { title: 'CÛdigo limpio', desc: 'TypeScript estricto, componentes modulares, zero warnings.', accent: 'from-blue-500' },
-                { title: 'DiseÒo funcional', desc: 'Interfaces que combinan estÈtica y usabilidad real.', accent: 'from-violet-500' },
-                { title: 'Entrega profesional', desc: 'Deploy automatizado, documentaciÛn y soporte incluido.', accent: 'from-emerald-500' },
+                { title: 'C√≥digo limpio', desc: 'TypeScript estricto, componentes modulares, zero warnings.', accent: 'from-blue-500' },
+                { title: 'Dise√±o funcional', desc: 'Interfaces que combinan est√©tica y usabilidad real.', accent: 'from-violet-500' },
+                { title: 'Entrega profesional', desc: 'Deploy automatizado, documentaci√≥n y soporte incluido.', accent: 'from-emerald-500' },
               ].map((item, i) => (
                 <motion.div
                   key={item.title}
                   initial={{ opacity: 0, x: 30 }}
                   animate={inView ? { opacity: 1, x: 0 } : {}}
                   transition={{ delay: 0.6 + i * 0.12, duration: 0.5 }}
-                  className="flex items-start gap-4 p-4 rounded-xl bg-white/[0.02] border border-white/[0.04] hover:bg-white/[0.04] hover:border-white/[0.08] transition-all duration-300 group/philo"
+                  className="flex items-start gap-3 sm:gap-4 p-3 sm:p-4 rounded-xl bg-white/[0.02] border border-white/[0.04] hover:bg-white/[0.04] hover:border-white/[0.08] transition-all duration-300 group/philo"
                 >
-                  <div className={`w-1 h-8 rounded-full bg-gradient-to-b ${item.accent} to-transparent flex-shrink-0 mt-0.5 group-hover/philo:h-10 transition-all duration-300`} />
+                  <div className={`w-1 h-7 sm:h-8 rounded-full bg-gradient-to-b ${item.accent} to-transparent flex-shrink-0 mt-0.5 group-hover/philo:h-9 sm:group-hover/philo:h-10 transition-all duration-300`} />
                   <div>
-                    <p className="text-sm font-bold text-white mb-0.5">{item.title}</p>
-                    <p className="text-xs text-slate-500 leading-relaxed">{item.desc}</p>
+                    <p className="text-xs sm:text-sm font-bold text-white mb-0.5">{item.title}</p>
+                    <p className="text-[11px] sm:text-xs text-slate-500 leading-relaxed">{item.desc}</p>
                   </div>
                 </motion.div>
               ))}

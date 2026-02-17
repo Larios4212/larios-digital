@@ -1,5 +1,5 @@
 import {
-  Umbrella, Waves, ShoppingBag, Building2,
+  Umbrella, Waves, ShoppingBag, Building2, GraduationCap,
   LayoutDashboard, BarChart3, Cog, PieChart, Layers,
   Github, Instagram, MessageCircle,
 } from 'lucide-react';
@@ -77,6 +77,23 @@ export const PROJECTS: Project[] = [
       { label: 'Deptos', value: '8' },
       { label: 'Módulos', value: '7' },
       { label: 'Charts', value: '6' },
+    ],
+  },
+  {
+    id: 'sitio-web-papime',
+    name: 'PAPIME Geología 3D',
+    tagline: 'Plataforma Educativa UNAM',
+    description:
+      'Plataforma educativa para la UNAM con modelos 3D interactivos, prácticas virtuales 360°, catálogos de minerales y aulas virtuales para Ciencias de la Tierra.',
+    demoUrl: 'https://larios4212.github.io/sitio-web-papime/',
+    gradient: 'from-amber-500 to-orange-600',
+    iconBg: 'bg-amber-500/15',
+    icon: GraduationCap,
+    tags: ['Educación', '3D', 'UNAM', 'Geología'],
+    stats: [
+      { label: 'Modelos 3D', value: '9' },
+      { label: 'Estaciones', value: '8' },
+      { label: 'Secciones', value: '6' },
     ],
   },
 ];

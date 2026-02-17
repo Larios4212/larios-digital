@@ -97,12 +97,12 @@ export function Hero() {
   const contentScale = useTransform(scrollYProgress, [0, 0.5], [1, 0.95]);
 
   return (
-    <section ref={sectionRef} className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section ref={sectionRef} className="relative min-h-screen flex items-center justify-center overflow-hidden pt-[72px] md:pt-0">
       {/*  Background layers with parallax  */}
       <motion.div className="absolute inset-0 pointer-events-none" style={{ y: bgY }}>
         {/* Primary gradient mesh */}
         <motion.div
-          className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[700px] rounded-full opacity-100"
+          className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] md:w-[1000px] h-[400px] md:h-[700px] rounded-full opacity-100"
           style={{
             background: 'radial-gradient(ellipse, rgba(59,130,246,0.08) 0%, rgba(99,102,241,0.04) 40%, transparent 70%)',
             x: mouse.x * -20,
@@ -111,7 +111,7 @@ export function Hero() {
         />
         {/* Secondary glow */}
         <motion.div
-          className="absolute top-1/3 right-1/4 w-[500px] h-[500px] rounded-full animate-glow"
+          className="absolute top-1/3 right-1/4 w-[300px] md:w-[500px] h-[300px] md:h-[500px] rounded-full animate-glow"
           style={{
             background: 'radial-gradient(circle, rgba(139,92,246,0.07) 0%, transparent 60%)',
             x: mouse.x * 15,
@@ -120,7 +120,7 @@ export function Hero() {
         />
         {/* Accent warm glow */}
         <motion.div
-          className="absolute bottom-1/4 left-1/5 w-[400px] h-[400px] rounded-full animate-glow"
+          className="absolute bottom-1/4 left-1/5 w-[250px] md:w-[400px] h-[250px] md:h-[400px] rounded-full animate-glow"
           style={{
             background: 'radial-gradient(circle, rgba(245,158,11,0.04) 0%, transparent 60%)',
             animationDelay: '3s',
@@ -129,8 +129,8 @@ export function Hero() {
           }}
         />
 
-        {/* Precision grid */}
-        <div className="absolute inset-0 opacity-[0.025]"
+        {/* Precision grid — hidden on mobile for performance */}
+        <div className="absolute inset-0 opacity-[0.025] hidden md:block"
           style={{
             backgroundImage: `
               linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px),
@@ -140,37 +140,57 @@ export function Hero() {
           }}
         />
 
-        {/* Orbital rings */}
-        <div className="opacity-40">
+        {/* Orbital rings — hidden on mobile for performance */}
+        <div className="opacity-40 hidden md:block">
           <OrbitalRing radius={200} duration={25} dotCount={5} color="rgba(99,102,241,0.5)" />
           <OrbitalRing radius={320} duration={35} dotCount={7} color="rgba(59,130,246,0.3)" reverse />
           <OrbitalRing radius={440} duration={45} dotCount={4} color="rgba(139,92,246,0.25)" />
         </div>
 
-        {/* Floating particles */}
-        {Array.from({ length: 15 }).map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute rounded-full"
-            style={{
-              width: 2 + Math.random() * 3,
-              height: 2 + Math.random() * 3,
-              background: `rgba(${120 + Math.random() * 80}, ${100 + Math.random() * 80}, 246, ${0.2 + Math.random() * 0.3})`,
-              top: `${10 + Math.random() * 80}%`,
-              left: `${5 + Math.random() * 90}%`,
-            }}
-            animate={{
-              y: [0, -(20 + Math.random() * 30), 0],
-              x: [0, (Math.random() - 0.5) * 20, 0],
-              opacity: [0.2, 0.7, 0.2],
-            }}
-            transition={{ duration: 4 + Math.random() * 4, repeat: Infinity, delay: Math.random() * 3, ease: 'easeInOut' }}
-          />
-        ))}
+        {/* Floating particles — fewer on mobile */}
+        <div className="hidden sm:block">
+          {Array.from({ length: 15 }).map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute rounded-full"
+              style={{
+                width: 2 + Math.random() * 3,
+                height: 2 + Math.random() * 3,
+                background: `rgba(${120 + Math.random() * 80}, ${100 + Math.random() * 80}, 246, ${0.2 + Math.random() * 0.3})`,
+                top: `${10 + Math.random() * 80}%`,
+                left: `${5 + Math.random() * 90}%`,
+              }}
+              animate={{
+                y: [0, -(20 + Math.random() * 30), 0],
+                x: [0, (Math.random() - 0.5) * 20, 0],
+                opacity: [0.2, 0.7, 0.2],
+              }}
+              transition={{ duration: 4 + Math.random() * 4, repeat: Infinity, delay: Math.random() * 3, ease: 'easeInOut' }}
+            />
+          ))}
+        </div>
+        {/* Mobile: only 5 particles */}
+        <div className="block sm:hidden">
+          {Array.from({ length: 5 }).map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute rounded-full"
+              style={{
+                width: 2,
+                height: 2,
+                background: `rgba(120, 130, 246, 0.3)`,
+                top: `${15 + i * 18}%`,
+                left: `${10 + i * 20}%`,
+              }}
+              animate={{ opacity: [0.2, 0.6, 0.2] }}
+              transition={{ duration: 4, repeat: Infinity, delay: i * 0.8, ease: 'easeInOut' }}
+            />
+          ))}
+        </div>
 
         {/* Light beams */}
         <div className="absolute top-0 left-1/4 w-px h-1/2 bg-gradient-to-b from-blue-500/10 via-transparent to-transparent" />
-        <div className="absolute top-0 right-1/3 w-px h-1/3 bg-gradient-to-b from-violet-500/8 via-transparent to-transparent" />
+        <div className="absolute top-0 right-1/3 w-px h-1/3 bg-gradient-to-b from-violet-500/8 via-transparent to-transparent hidden sm:block" />
       </motion.div>
 
       {/*  Floating tech badges  */}
@@ -181,7 +201,7 @@ export function Hero() {
 
       {/*  Main content with scroll fade  */}
       <motion.div
-        className="relative z-10 max-w-5xl mx-auto px-6 text-center"
+        className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 text-center"
         style={{ opacity: contentOpacity, scale: contentScale }}
       >
         {/* Badge with shimmer */}
@@ -189,15 +209,15 @@ export function Hero() {
           initial={{ opacity: 0, y: 30, filter: 'blur(10px)' }}
           animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
           transition={{ duration: 0.8 }}
-          className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white/[0.04] border border-white/[0.08] mb-10 relative overflow-hidden group"
+          className="inline-flex items-center gap-2 px-4 sm:px-5 py-2 rounded-full bg-white/[0.04] border border-white/[0.08] mb-8 sm:mb-10 relative overflow-hidden group"
         >
           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.06] to-transparent animate-shimmer" style={{ backgroundSize: '200% 100%' }} />
-          <Sparkles className="w-4 h-4 text-blue-400 relative z-10" />
-          <span className="text-xs font-semibold text-slate-300 tracking-widest uppercase relative z-10">Smart Business Software</span>
+          <Sparkles className="w-3.5 sm:w-4 h-3.5 sm:h-4 text-blue-400 relative z-10" />
+          <span className="text-[10px] sm:text-xs font-semibold text-slate-300 tracking-widest uppercase relative z-10">Smart Business Software</span>
         </motion.div>
 
         {/* Headline with character-by-character reveal */}
-        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[5.2rem] font-extrabold font-display leading-[1.05] mb-7">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-[5.2rem] font-extrabold font-display leading-[1.1] sm:leading-[1.05] mb-5 sm:mb-7">
           <AnimatedText text="Desarrollo sistemas" className="block" />
           <motion.span
             initial={{ opacity: 0, scale: 0.8 }}
@@ -224,10 +244,10 @@ export function Hero() {
           initial={{ opacity: 0, y: 30, filter: 'blur(6px)' }}
           animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
           transition={{ duration: 0.8, delay: 1.0 }}
-          className="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto mb-12 leading-relaxed"
+          className="text-base sm:text-lg md:text-xl text-slate-400 max-w-2xl mx-auto mb-8 sm:mb-12 leading-relaxed px-2"
         >
-          Automatizaci�n, dashboards ejecutivos, sistemas administrativos y soluciones SaaS
-          personalizadas. Tecnolog�a que transforma operaciones en resultados.
+          Automatización, dashboards ejecutivos, sistemas administrativos y soluciones SaaS
+          personalizadas. Tecnología que transforma operaciones en resultados.
         </motion.p>
 
         {/* CTA buttons with entrance */}
@@ -235,14 +255,14 @@ export function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 1.2 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4"
+          className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 w-full"
         >
           {/* WhatsApp CTA */}
           <motion.a
             href={WHATSAPP_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-whatsapp text-base group relative overflow-hidden"
+            className="btn-whatsapp text-sm sm:text-base group relative overflow-hidden w-full sm:w-auto"
             whileHover={{ scale: 1.04, y: -2 }}
             whileTap={{ scale: 0.97 }}
           >
@@ -255,7 +275,7 @@ export function Hero() {
 
           <motion.a
             href="#projects"
-            className="btn-secondary text-base group"
+            className="btn-secondary text-sm sm:text-base group w-full sm:w-auto"
             whileHover={{ scale: 1.04, y: -2 }}
             whileTap={{ scale: 0.97 }}
           >
@@ -269,34 +289,34 @@ export function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.6, duration: 0.8 }}
-          className="mt-20 grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-2xl mx-auto"
+          className="mt-12 sm:mt-20 grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 max-w-2xl mx-auto"
         >
           {[
-            { icon: '', label: 'React + TypeScript' },
-            { icon: '', label: 'Arquitectura Modular' },
-            { icon: '', label: 'Deploy Autom�tico' },
-            { icon: '', label: 'Dise�o Premium' },
+            { icon: '⚡', label: 'React + TypeScript' },
+            { icon: '🧩', label: 'Arquitectura Modular' },
+            { icon: '🚀', label: 'Deploy Automático' },
+            { icon: '✨', label: 'Diseño Premium' },
           ].map((t, i) => (
             <motion.div
               key={t.label}
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.7 + i * 0.1, duration: 0.5 }}
-              className="flex flex-col items-center gap-2 p-3 rounded-xl bg-white/[0.02] border border-white/[0.04] hover:bg-white/[0.05] hover:border-white/[0.08] transition-all duration-300"
+              className="flex flex-col items-center gap-1.5 sm:gap-2 p-2.5 sm:p-3 rounded-xl bg-white/[0.02] border border-white/[0.04] hover:bg-white/[0.05] hover:border-white/[0.08] transition-all duration-300"
             >
-              <span className="text-lg">{t.icon}</span>
-              <span className="text-[11px] text-slate-500 font-medium text-center leading-tight">{t.label}</span>
+              <span className="text-base sm:text-lg">{t.icon}</span>
+              <span className="text-[10px] sm:text-[11px] text-slate-500 font-medium text-center leading-tight">{t.label}</span>
             </motion.div>
           ))}
         </motion.div>
       </motion.div>
 
-      {/* Scroll indicator */}
+      {/* Scroll indicator — hidden on mobile */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 2.2 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 hidden sm:block"
       >
         <motion.div
           animate={{ y: [0, 10, 0] }}
