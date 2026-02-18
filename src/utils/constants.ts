@@ -1,5 +1,5 @@
 import {
-  Umbrella, Waves, ShoppingBag, Building2, GraduationCap,
+  Umbrella, Waves, ShoppingBag, Building2, GraduationCap, Dumbbell,
   LayoutDashboard, BarChart3, Cog, PieChart, Layers,
   Github, Instagram, MessageCircle,
 } from 'lucide-react';
@@ -94,6 +94,23 @@ export const PROJECTS: Project[] = [
       { label: 'Modelos 3D', value: '9' },
       { label: 'Estaciones', value: '8' },
       { label: 'Secciones', value: '6' },
+    ],
+  },
+  {
+    id: 'gym-control',
+    name: 'GymControl',
+    tagline: 'Smart Membership & Access',
+    description:
+      'Sistema SaaS de gestión para gimnasios con membresías, control de acceso biométrico, panel financiero con Recharts y alertas inteligentes de vencimiento.',
+    demoUrl: 'https://larios4212.github.io/gym-control/',
+    gradient: 'from-emerald-500 to-cyan-600',
+    iconBg: 'bg-emerald-500/15',
+    icon: Dumbbell,
+    tags: ['Membresías', 'Check-in', 'Finanzas', 'Alertas'],
+    stats: [
+      { label: 'Miembros', value: '28' },
+      { label: 'Módulos', value: '5' },
+      { label: 'Charts', value: '4' },
     ],
   },
 ];
