@@ -1,5 +1,5 @@
 import {
-  Umbrella, Waves, ShoppingBag, Building2, GraduationCap, Dumbbell,
+  Umbrella, Waves, ShoppingBag, Building2, GraduationCap, Dumbbell, Shield,
   LayoutDashboard, BarChart3, Cog, PieChart, Layers,
   Github, Instagram, MessageCircle,
 } from 'lucide-react';
@@ -111,6 +111,23 @@ export const PROJECTS: Project[] = [
       { label: 'Miembros', value: '28' },
       { label: 'Módulos', value: '5' },
       { label: 'Charts', value: '4' },
+    ],
+  },
+  {
+    id: 'cyber-shield',
+    name: 'CyberShield',
+    tagline: 'Web Security Scanner',
+    description:
+      'Plataforma de ciberseguridad para escaneo y análisis de vulnerabilidades web. Escáner simulado, OWASP Top 10, security headers, reportes y alertas en tiempo real.',
+    demoUrl: 'https://larios4212.github.io/cyber-shield/',
+    gradient: 'from-red-500 to-violet-600',
+    iconBg: 'bg-red-500/15',
+    icon: Shield,
+    tags: ['Pentesting', 'OWASP', 'Vulnerabilidades', 'Seguridad'],
+    stats: [
+      { label: 'Vulns DB', value: '34' },
+      { label: 'Targets', value: '8' },
+      { label: 'Módulos', value: '5' },
     ],
   },
 ];
