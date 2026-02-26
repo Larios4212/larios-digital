@@ -1,5 +1,5 @@
 import {
-  Umbrella, Waves, ShoppingBag, Building2, GraduationCap, Dumbbell, Shield,
+  Umbrella, Waves, ShoppingBag, Building2, GraduationCap, Dumbbell, Shield, Zap,
   LayoutDashboard, BarChart3, Cog, PieChart, Layers,
   Github, Instagram, MessageCircle,
 } from 'lucide-react';
@@ -128,6 +128,23 @@ export const PROJECTS: Project[] = [
       { label: 'Vulns DB', value: '34' },
       { label: 'Targets', value: '8' },
       { label: 'Módulos', value: '5' },
+    ],
+  },
+  {
+    id: 'aurax-team',
+    name: 'auraX',
+    tagline: 'Competitive Warzone Team',
+    description:
+      'Sitio web profesional para equipo competitivo de Warzone con roster, stats, historial de partidas, torneos y analytics con animaciones esports cinematográficas.',
+    demoUrl: 'https://larios4212.github.io/aurax-team/',
+    gradient: 'from-purple-500 to-pink-600',
+    iconBg: 'bg-purple-500/15',
+    icon: Zap,
+    tags: ['Esports', 'Warzone', 'Gaming', 'Stats'],
+    stats: [
+      { label: 'Jugadores', value: '5' },
+      { label: 'Torneos', value: '8' },
+      { label: 'Charts', value: '5' },
     ],
   },
 ];
