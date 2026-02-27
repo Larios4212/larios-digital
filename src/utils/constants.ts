@@ -1,5 +1,5 @@
 import {
-  Umbrella, Waves, ShoppingBag, Building2, GraduationCap, Dumbbell, Shield, Zap,
+  Umbrella, Waves, ShoppingBag, Building2, GraduationCap, Dumbbell, Shield, Zap, Leaf,
   LayoutDashboard, BarChart3, Cog, PieChart, Layers,
   Github, Instagram, MessageCircle,
 } from 'lucide-react';
@@ -145,6 +145,23 @@ export const PROJECTS: Project[] = [
       { label: 'Jugadores', value: '5' },
       { label: 'Torneos', value: '8' },
       { label: 'Charts', value: '5' },
+    ],
+  },
+  {
+    id: 'tortuga-terrestre',
+    name: 'Tortuga Terrestre',
+    tagline: 'Guía Completa',
+    description:
+      'Página web educativa sobre tortugas terrestres con información de especies, anatomía, guía de cuidados, datos curiosos y sección de conservación.',
+    demoUrl: 'https://larios4212.github.io/tortuga-terrestre/',
+    gradient: 'from-emerald-500 to-green-700',
+    iconBg: 'bg-emerald-500/15',
+    icon: Leaf,
+    tags: ['Educativo', 'Naturaleza', 'Animales', 'Responsive'],
+    stats: [
+      { label: 'Especies', value: '6' },
+      { label: 'Secciones', value: '5' },
+      { label: 'Datos', value: '8' },
     ],
   },
 ];
