@@ -1,5 +1,5 @@
 import {
-  Umbrella, Waves, ShoppingBag, Building2, GraduationCap, Dumbbell, Shield, Zap, Leaf,
+  Umbrella, Waves, ShoppingBag, Building2, GraduationCap, Dumbbell, Shield, Zap, Leaf, Droplets,
   LayoutDashboard, BarChart3, Cog, PieChart, Layers,
   Github, Instagram, MessageCircle,
 } from 'lucide-react';
@@ -162,6 +162,23 @@ export const PROJECTS: Project[] = [
       { label: 'Especies', value: '6' },
       { label: 'Secciones', value: '5' },
       { label: 'Datos', value: '8' },
+    ],
+  },
+  {
+    id: 'aquasight',
+    name: 'AquaSight',
+    tagline: 'IA + Satélites para Agua Potable',
+    description:
+      'Landing page científica para el EY AI & Data Challenge. Monitoreo inteligente de calidad de agua con imágenes satelitales y machine learning.',
+    demoUrl: 'https://larios4212.github.io/aquasight/',
+    gradient: 'from-blue-500 to-blue-800',
+    iconBg: 'bg-blue-500/15',
+    icon: Droplets,
+    tags: ['IA', 'Satélites', 'Data Science', 'EY Challenge'],
+    stats: [
+      { label: 'Secciones', value: '8' },
+      { label: 'Techs', value: '10' },
+      { label: 'Pipeline', value: '5 pasos' },
     ],
   },
 ];
